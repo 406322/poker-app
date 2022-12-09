@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../services"
+import Image from 'next/image'
+
+import {as} from "./cards"
+
+const bilde = '/2R.png'
+console.log(bilde)
+
+console.log(as)
+
 
 const getCards = () => {
     const { hand, handType } = getAnalysedPokerHand()
@@ -13,6 +22,8 @@ export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
     const [handType, setHandType] = useState<string | null>(null)
+
+    console.log(hand)
 
     useEffect(() => {
         setCardsToState()
@@ -31,22 +42,24 @@ export const PokerHand = () => {
     }, [])
     if (!rendered) return null
 
-
-
+    const hallo = '2R'
 
 
     return (
         <>
             {hand &&
                 <>
-                    <h1 className="text-3xl font-bold text-center m-10" >Poker Hand!</h1>
+                    <h1 className="m-10 text-3xl font-bold text-center" >Poker Hand!</h1>
+
+                    <Image src={`/${hallo}.png`} alt={hallo} width="96" height="96" />
+                
 
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
                             <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p>
-                            <p className="text-center font-bold">{handType}</p>
+                            <p className="font-bold text-center">{handType}</p>
                             <button
-                                className="bg-gray-400 rounded-sm p-2"
+                                className="p-2 bg-gray-400 rounded-sm"
                                 onClick={() => setCardsToState() }
                             >
                                 Deal New Cards
