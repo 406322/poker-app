@@ -1,3 +1,11 @@
+import { getAnalysedPokerHand } from "./services"
+
+const {hand, handType} = getAnalysedPokerHand()
+
+console.log(hand)
+console.log(handType)
+
+
 export default function Home() {
   return (
     <div>
