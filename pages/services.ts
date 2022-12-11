@@ -2,71 +2,122 @@ export {}
 
 
 // 1. Identifisering av kort
-const tallverdi = [ "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 const kortfarge = ["C", "D", "H", "S"]
 
-// 2. Funksjon for å generere ny hånd med 5 vilkårlige kort
-export const generatePokerHand = () => {
-    // Genrerer 5 tilfeldige kort med map()
-    const hånd = Array(5)
-      .fill(0)
-      .map(() => {
-        // Generer tilfeldig kortfarge og verdi
-        const farge = kortfarge[Math.floor(Math.random() * kortfarge.length)]
-        const verdi = tallverdi[Math.floor(Math.random() * tallverdi.length)]
-  
-        // Returner kortet som en string
-        return verdi + farge;
-      })
 
-    return hånd;
-  }
+
+// 2. Funksjon for å generere ny hånd med 5 vilkårlige kort
+const generatePokerHand = () => { // Denne må dobbeltsjekkes
+  // Genrerer 5 tilfeldige kort med map()
+  const hånd = Array(5)
+    .fill(0)
+    .map(() => {
+      // Generer tilfeldig kortfarge og verdi
+      const farge = kortfarge[Math.floor(Math.random() * kortfarge.length)]
+      const verdi = tallverdi[Math.floor(Math.random() * tallverdi.length)]
+
+      // Returner kortet som en string
+      return verdi + farge;
+    })
+
+  return hånd;
+}
+
+// Helper that converts the ranks to numbers
+const getNum = (ranks: any[]) => {
+  return ranks.map((element) => {
+    if (element === 'T') return 10
+    if (element === 'J') return 11
+    if (element === 'Q') return 12
+    if (element === 'K') return 13
+    if (element === 'A') return 14
+    else return Number(element)
+  })
+}
 
 
 // Funksjon som tar inn 5 kort og returnerer en analyse av dem
-export const getPokerHandType = (hand: any[]) => {
-    // Create arrays of the suits and ranks of the cards in the hand
-    const suits = hand.map(card => card[1])
-    const ranks = hand.map(card => card[0])
-  
-    // Check if the hand contains five cards of the same suit (flush)
-    const isFlush = suits.every(suit => suit === suits[0])
-  
-    // Check if the hand contains five cards in a row (straight)
-    // First, sort the ranks in ascending order
-    const sortedRanks = ranks.slice().sort((a, b) => a - b)
-    // Then, check if each consecutive pair of cards has a rank that is exactly one apart
-    const isStraight = sortedRanks.every((rank, i) => i === 0 || rank === sortedRanks[i - 1] + 1)
-  
-    // Check if the hand contains four cards of the same rank (four of a kind)
-    const fourOfAKind = ranks.filter(rank => ranks.indexOf(rank) !== ranks.lastIndexOf(rank)).length === 4
-  
-    // Check if the hand contains three cards of the same rank and two cards of another rank (full house)
-    const fullHouse = ranks.filter(rank => ranks.indexOf(rank) !== ranks.lastIndexOf(rank)).length === 3
-  
-    // Check if the hand contains three cards of the same rank (three of a kind)
-    const threeOfAKind = ranks.filter(rank => ranks.indexOf(rank) !== ranks.lastIndexOf(rank)).length === 3
-  
-    // Check if the hand contains two pairs of cards with the same rank (two pair)
-    const pairs = ranks.filter(rank => ranks.indexOf(rank) !== ranks.lastIndexOf(rank)).length === 2
-  
-    // Check if the hand contains a pair of cards with the same rank (one pair)
-    const onePair = ranks.filter(rank => ranks.indexOf(rank) !== ranks.lastIndexOf(rank)).length === 1
-  
-    // Return the type of hand based on the criteria above
-    if (isFlush && isStraight) return "Straight Flush"
-    if (fourOfAKind) return "Four of a Kind"
-    if (fullHouse) return "Full House"
-    if (isFlush) return "Flush"
-    if (isStraight) return "Straight"
-    if (threeOfAKind) return "Three of a Kind"
-    if (pairs) return "Two Pair"
-    if (onePair) return "One Pair"
-    return "High Card"
+const getPokerHandType = (hand: any[]) => {
+  console.log(hand)
+
+  // Create arrays of the suits and ranks of the cards in the hand
+  const suits = hand.map(card => card[1])
+  const ranks = hand.map(card => card[0])
+  console.log(ranks)
+
+  // Check for Flush
+  const isFlush = (suits: any[]) => suits.every(suit => suit === suits[0])
+
+  // Check for Straight
+  const isStraight = (ranks: any[]) => {
+    let num = getNum(ranks)
+    num.sort((a, b) => a - b)
+    const straight = (num[4] - 1) == num[3] && (num[3] - 1) == num[2] && (num[2] - 1) == num[1] && (num[1] - 1) == num[0]
+    return straight
   }
+
+  // Check for Four of a Kind
+  const isFourOfAKind = (ranks: any[]) => {
+    ranks = getNum(ranks)
+      .sort((a, b) => a - b)
+    const fourFirst = ranks[0] === ranks[1] && ranks[1] === ranks[2] && ranks[2] === ranks[3]
+    const fourLast = ranks[1] === ranks[2] && ranks[2] === ranks[3] && ranks[3] === ranks[4]
+    return fourFirst || fourLast
+  }
+
+  // Check for Full House
+  const isFullHouse = (ranks: any[]) => {
+    let array = getNum(ranks)
+    array.sort((a, b) => a - b)
+    const fullHouseLowPair = array[0] === array[1] && array[2] === array[3] && array[3] === array[4]
+    const fullHouseHighPair = array[0] === array[1] && array[1] === array[2] && array[3] === array[4]
+    return fullHouseLowPair || fullHouseHighPair
+  }
+
+  // Check for Three of a Kind
+  const isThreeOfAKind = (ranks: any[]) => {
+    let array = getNum(ranks)
+    array = array.sort((a, b) => a - b)
+    console.log(array)
+    const threeFirst = array[0] === array[1] && array[1] === array[2]
+    const threeMiddle = array[1] === array[2] && array[2] === array[3]
+    const threeLast = array[2] === array[3] && array[3] === array[4]
+    return threeFirst || threeMiddle || threeLast
+  }
+
+  // Check for Two Pair
+  const isTwoPair = (ranks: any[]) => {
+    ranks = getNum(ranks)
+    let sortedRanks = ranks.sort((a, b) => a - b)
+    const firsttwo = sortedRanks[0] === sortedRanks[1]
+    const secondtwo = sortedRanks[1] === sortedRanks[2]
+    const thirdtwo = sortedRanks[2] === sortedRanks[3]
+    const fourthtwo = sortedRanks[3] === sortedRanks[4]
+    return firsttwo && thirdtwo || firsttwo && fourthtwo || secondtwo && fourthtwo
+  }
+
+
+  // Check for One Pair
+  const isOnePair = (ranks: any[]) => [...new Set(ranks)].length === 4
+
+  // Return the type of hand based on the criteria above
+  if (isFlush(suits) && isStraight(ranks)) return "Straight Flush" // OK
+  if (isFourOfAKind(ranks)) return "Four of a Kind" // OK
+  if (isFullHouse(ranks)) return "Full House" // OK
+  if (isFlush(suits)) return "Flush" // OK
+  if (isStraight(ranks)) return "Straight" // OK
+  if (isThreeOfAKind(ranks)) return "Three of a Kind" // OK
+  if (isTwoPair(ranks)) return "Two Pair" // OK
+  if (isOnePair(ranks)) return "One Pair" // OK
+  return "High Card"
+}
 
   export const getAnalysedPokerHand = () => {
     const hand = generatePokerHand()
     const handType = getPokerHandType(hand)
+    console.log(hand)
+    console.log(handType)
     return { hand, handType }
   }
+
