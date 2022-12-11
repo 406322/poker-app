@@ -2,16 +2,8 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../services"
 import Image from 'next/image'
 
-// const getCards = () => {
-//     const { hand, handType } = getAnalysedPokerHand()
-//     return { hand, handType }
-// }
-
 const getCards = () => { return getAnalysedPokerHand()}
   
-
-// const { hand, handType } = getAnalysedPokerHand()
-
 export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
