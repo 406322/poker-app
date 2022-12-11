@@ -14,7 +14,7 @@ export const PokerHand = () => {
     }, []);
 
     const setCardsToState = () => {
-        const { hand, handType } = getCards()
+        const { hand, handType } = getAnalysedPokerHand()
         setHand(hand)
         setHandType(handType)
     }
@@ -32,7 +32,6 @@ export const PokerHand = () => {
             {hand &&
                 <>
                     <h1 className="m-10 text-3xl font-bold text-center" >Finn pokerhånden</h1>
-
                     <div
                         className="flex items-center justify-center gap-5">
                         <div className="relative w-24 h-36"><Image src={`/${hand[0]}.png`} alt={hand[0]} fill sizes="33vw" priority /></div>
@@ -41,8 +40,6 @@ export const PokerHand = () => {
                         <div className="relative w-24 h-36"><Image src={`/${hand[3]}.png`} alt={hand[3]} fill sizes="33vw" priority /></div>
                         <div className="relative w-24 h-36"><Image src={`/${hand[4]}.png`} alt={hand[4]} fill sizes="33vw" priority /></div>
                     </div>
-
-
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
                             {/* <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p> */}
