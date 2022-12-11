@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../services"
 import Image from 'next/image'
 
-const getCards = () => {
-    const { hand, handType } = getAnalysedPokerHand()
-    return { hand, handType }
-}
+// const getCards = () => {
+//     const { hand, handType } = getAnalysedPokerHand()
+//     return { hand, handType }
+// }
 
-const { hand, handType } = getAnalysedPokerHand()
+const getCards = () => { return getAnalysedPokerHand()}
+  
+
+// const { hand, handType } = getAnalysedPokerHand()
 
 export const PokerHand = () => {
 
@@ -36,7 +39,7 @@ export const PokerHand = () => {
         <>
             {hand &&
                 <>
-                    <h1 className="m-10 text-3xl font-bold text-center" >Poker Hand!</h1>
+                    <h1 className="m-10 text-3xl font-bold text-center" >Finn pokerhånden</h1>
 
                     <div
                         className="flex items-center justify-center gap-5">
@@ -50,11 +53,13 @@ export const PokerHand = () => {
 
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
-                            <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p>
+                            {/* <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p> */}
                             <p className="font-bold text-center">{handType}</p>
                             <button
                                 className="p-2 bg-gray-400 rounded-sm"
-                                onClick={() => setCardsToState()}>
+                                onClick={() => setCardsToState()}
+                                autoFocus
+                                >
                                 Deal New Cards
                             </button>
                         </div>
