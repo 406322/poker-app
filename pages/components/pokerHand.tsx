@@ -2,14 +2,6 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../services"
 import Image from 'next/image'
 
-// import {as} from "./cards"
-
-// const bilde = '/2R.png'
-// console.log(bilde)
-
-// console.log(as)
-
-
 const getCards = () => {
     const { hand, handType } = getAnalysedPokerHand()
     return { hand, handType }
@@ -19,11 +11,8 @@ const { hand, handType } = getAnalysedPokerHand()
 
 export const PokerHand = () => {
 
-
     const [hand, setHand] = useState<string[] | null>(null);
     const [handType, setHandType] = useState<string | null>(null)
-
-    // console.log(hand)
 
     useEffect(() => {
         setCardsToState()
@@ -42,8 +31,6 @@ export const PokerHand = () => {
     }, [])
     if (!rendered) return null
 
-    const hallo = '2R'
-
 
     return (
         <>
@@ -51,12 +38,13 @@ export const PokerHand = () => {
                 <>
                     <h1 className="m-10 text-3xl font-bold text-center" >Poker Hand!</h1>
 
-                    <div className="flex items-center justify-center gap-5">
-                        <Image src={`/${hand[0]}.png`} alt={hallo} width="96" height="96" />
-                        <Image src={`/${hand[1]}.png`} alt={hallo} width="96" height="96" />
-                        <Image src={`/${hand[2]}.png`} alt={hallo} width="96" height="96" />
-                        <Image src={`/${hand[3]}.png`} alt={hallo} width="96" height="96" />
-                        <Image src={`/${hand[4]}.png`} alt={hallo} width="96" height="96" />
+                    <div
+                        className="flex items-center justify-center gap-5">
+                        <div className="relative w-24 h-36"><Image src={`/${hand[0]}.png`} alt={hand[0]} fill sizes="33vw" priority /></div>
+                        <div className="relative w-24 h-36"><Image src={`/${hand[1]}.png`} alt={hand[1]} fill sizes="33vw" priority /></div>
+                        <div className="relative w-24 h-36"><Image src={`/${hand[2]}.png`} alt={hand[2]} fill sizes="33vw" priority /></div>
+                        <div className="relative w-24 h-36"><Image src={`/${hand[3]}.png`} alt={hand[3]} fill sizes="33vw" priority /></div>
+                        <div className="relative w-24 h-36"><Image src={`/${hand[4]}.png`} alt={hand[4]} fill sizes="33vw" priority /></div>
                     </div>
 
 
@@ -66,8 +54,7 @@ export const PokerHand = () => {
                             <p className="font-bold text-center">{handType}</p>
                             <button
                                 className="p-2 bg-gray-400 rounded-sm"
-                                onClick={() => setCardsToState()}
-                            >
+                                onClick={() => setCardsToState()}>
                                 Deal New Cards
                             </button>
                         </div>
