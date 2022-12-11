@@ -51,8 +51,14 @@ export const PokerHand = () => {
                 <>
                     <h1 className="m-10 text-3xl font-bold text-center" >Poker Hand!</h1>
 
-                    <Image src={`/${hand[0]}.png`} alt={hallo} width="96" height="96" />
-                
+                    <div className="flex items-center justify-center gap-5">
+                        <Image src={`/${hand[0]}.png`} alt={hallo} width="96" height="96" />
+                        <Image src={`/${hand[1]}.png`} alt={hallo} width="96" height="96" />
+                        <Image src={`/${hand[2]}.png`} alt={hallo} width="96" height="96" />
+                        <Image src={`/${hand[3]}.png`} alt={hallo} width="96" height="96" />
+                        <Image src={`/${hand[4]}.png`} alt={hallo} width="96" height="96" />
+                    </div>
+
 
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
@@ -60,7 +66,7 @@ export const PokerHand = () => {
                             <p className="font-bold text-center">{handType}</p>
                             <button
                                 className="p-2 bg-gray-400 rounded-sm"
-                                onClick={() => setCardsToState() }
+                                onClick={() => setCardsToState()}
                             >
                                 Deal New Cards
                             </button>
