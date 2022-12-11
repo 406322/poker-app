@@ -2,7 +2,7 @@ export {}
 
 
 // 1. Identifisering av kort
-const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "k", "d", "k", "e"]
+const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "kn", "d", "k", "e"]
 const kortfarge = ["k", "r", "h", "s"]
 
 
@@ -28,7 +28,7 @@ const generatePokerHand = () => { // Denne må dobbeltsjekkes
 const getNum = (ranks: any[]) => {
   return ranks.map((element) => {
     if (element === 't') return 10
-    if (element === 'k') return 11
+    if (element === 'kn') return 11
     if (element === 'd') return 12
     if (element === 'k') return 13
     if (element === 'e') return 14
