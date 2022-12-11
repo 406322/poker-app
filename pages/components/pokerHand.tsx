@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../services"
 import Image from 'next/image'
 
-import {as} from "./cards"
+// import {as} from "./cards"
 
-const bilde = '/2R.png'
-console.log(bilde)
+// const bilde = '/2R.png'
+// console.log(bilde)
 
-console.log(as)
+// console.log(as)
 
 
 const getCards = () => {
@@ -23,7 +23,7 @@ export const PokerHand = () => {
     const [hand, setHand] = useState<string[] | null>(null);
     const [handType, setHandType] = useState<string | null>(null)
 
-    console.log(hand)
+    // console.log(hand)
 
     useEffect(() => {
         setCardsToState()
@@ -51,7 +51,7 @@ export const PokerHand = () => {
                 <>
                     <h1 className="m-10 text-3xl font-bold text-center" >Poker Hand!</h1>
 
-                    <Image src={`/${hallo}.png`} alt={hallo} width="96" height="96" />
+                    <Image src={`/${hand[0]}.png`} alt={hallo} width="96" height="96" />
                 
 
                     <div className="flex items-center justify-center">

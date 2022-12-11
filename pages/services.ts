@@ -39,12 +39,10 @@ const getNum = (ranks: any[]) => {
 
 // Funksjon som tar inn 5 kort og returnerer en analyse av dem
 const getPokerHandType = (hand: any[]) => {
-  console.log(hand)
 
   // Create arrays of the suits and ranks of the cards in the hand
   const suits = hand.map(card => card[1])
   const ranks = hand.map(card => card[0])
-  console.log(ranks)
 
   // Check for Flush
   const isFlush = (suits: any[]) => suits.every(suit => suit === suits[0])
@@ -79,7 +77,6 @@ const getPokerHandType = (hand: any[]) => {
   const isThreeOfAKind = (ranks: any[]) => {
     let array = getNum(ranks)
     array = array.sort((a, b) => a - b)
-    console.log(array)
     const threeFirst = array[0] === array[1] && array[1] === array[2]
     const threeMiddle = array[1] === array[2] && array[2] === array[3]
     const threeLast = array[2] === array[3] && array[3] === array[4]
@@ -116,8 +113,6 @@ const getPokerHandType = (hand: any[]) => {
   export const getAnalysedPokerHand = () => {
     const hand = generatePokerHand()
     const handType = getPokerHandType(hand)
-    console.log(hand)
-    console.log(handType)
     return { hand, handType }
   }
 
