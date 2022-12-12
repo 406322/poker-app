@@ -4,7 +4,7 @@ const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "c", "d", "k", "
 const kortfarge = ["k", "r", "h", "s"]
 
 export const isFourOfAKind = (ranks: any[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
-  ranks = getNum(ranks)
+  ranks = convertToNumbers(ranks)
     .sort((a, b) => a - b)
   const fourFirst = ranks[0] === ranks[1] && ranks[1] === ranks[2] && ranks[2] === ranks[3]
   const fourLast = ranks[1] === ranks[2] && ranks[2] === ranks[3] && ranks[3] === ranks[4]
@@ -12,7 +12,7 @@ export const isFourOfAKind = (ranks: any[]) => { // Her måtte konvertert ranks 
 }
 
 export const isFullHouse = (ranks: string[]) => {
-  let array = getNum(ranks)
+  let array = convertToNumbers(ranks)
   array.sort((a, b) => a - b)
   const fullHouseLowPair = array[0] === array[1] && array[2] === array[3] && array[3] === array[4]
   const fullHouseHighPair = array[0] === array[1] && array[1] === array[2] && array[3] === array[4]
@@ -22,14 +22,14 @@ export const isFullHouse = (ranks: string[]) => {
 export const isFlush = (suits: string[]) => suits.every(suit => suit === suits[0])
 
 export const isStraight = (ranks: string[]) => {
-  let num = getNum(ranks)
+  let num = convertToNumbers(ranks)
   num.sort((a, b) => a - b)
   const straight = (num[4] - 1) == num[3] && (num[3] - 1) == num[2] && (num[2] - 1) == num[1] && (num[1] - 1) == num[0]
   return straight
 }
 
 export const isThreeOfAKind = (ranks: string[]) => {
-  let array = getNum(ranks)
+  let array = convertToNumbers(ranks)
   array = array.sort((a, b) => a - b)
   const threeFirst = array[0] === array[1] && array[1] === array[2]
   const threeMiddle = array[1] === array[2] && array[2] === array[3]
@@ -38,7 +38,7 @@ export const isThreeOfAKind = (ranks: string[]) => {
 }
 
 export const isTwoPair = (ranks: any[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
-  ranks = getNum(ranks)
+  ranks = convertToNumbers(ranks)
   let sortedRanks = ranks.sort((a, b) => a - b)
   const firsttwo = sortedRanks[0] === sortedRanks[1]
   const secondtwo = sortedRanks[1] === sortedRanks[2]
@@ -65,7 +65,7 @@ export const generatePokerHand = () => {
 
 
 // Helper that converts the ranks to numbers
-const getNum = (ranks: string[]) => {
+const convertToNumbers = (ranks: string[]) => {
   return ranks.map((element) => {
     if (element === 't') return 10
     if (element === 'c') return 11
