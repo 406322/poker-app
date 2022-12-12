@@ -38,11 +38,11 @@ export const isThreeOfAKind = (ranks: number[]) => {
 
 export const isTwoPair = (ranks: number[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
   ranks.sort((a, b) => a - b)
-  const firsttwo = ranks[0] === ranks[1]
-  const secondtwo = ranks[1] === ranks[2]
-  const thirdtwo = ranks[2] === ranks[3]
-  const fourthtwo = ranks[3] === ranks[4]
-  return firsttwo && thirdtwo || firsttwo && fourthtwo || secondtwo && fourthtwo
+  const firstTwo = ranks[0] === ranks[1]
+  const secondTwo = ranks[1] === ranks[2]
+  const thirdTwo = ranks[2] === ranks[3]
+  const fourthTwo = ranks[3] === ranks[4]
+  return firstTwo && thirdTwo || firstTwo && fourthTwo || secondTwo && fourthTwo
 }
 
 export const isOnePair = (ranks: number[]) => [...new Set(ranks)].length === 4
