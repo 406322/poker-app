@@ -41,7 +41,6 @@ export const isThreeOfAKind = (ranks: number[]) => {
 
 export const isTwoPair = (ranks: number[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
   ranks.sort((a, b) => a - b)
-  console.log(ranks)
   const firsttwo = ranks[0] === ranks[1]
   const secondtwo = ranks[1] === ranks[2]
   const thirdtwo = ranks[2] === ranks[3]

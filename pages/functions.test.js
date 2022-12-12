@@ -2,7 +2,7 @@ import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoP
 
 
 
-describe("isFourOfAKind test", () => {
+describe("isFourOfAKind", () => {
     test("Test 1", () => {
         const ranks = ['1', '1', '1', '10', '1']
         expect(isFourOfAKind(ranks)).toBe(true);
@@ -17,7 +17,22 @@ describe("isFourOfAKind test", () => {
     })
 })
 
-describe("IsFlush test", () => {
+describe("isFullHouse", () => {
+    test("Test 1", () => {
+        const ranks = ['1', '1', '1', '10', '10']
+        expect(isFullHouse(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['k', '5', 'k', '5', 'k']
+        expect(isFullHouse(ranks)).toBe(true);
+    })
+    test("Test 3", () => {
+        const ranks = ['8', '8', '9', '5', '5']
+        expect(isFullHouse(ranks)).toBe(false);
+    })  
+})
+
+describe("IsFlush", () => {
     test("Test 1", () => {
         const suits = ['s', 's', 's', 's', 'x']
         expect(isFlush(suits)).toBe(false);
@@ -32,7 +47,7 @@ describe("IsFlush test", () => {
     })
 })
 
-describe("isThreeOfAKind test", () => {
+describe("isThreeOfAKind", () => {
     test("Test 1", () => {
         const ranks = ['1', '3', '1', '1', '10']
         const numRanks = convertToNumbers(ranks)
@@ -45,7 +60,22 @@ describe("isThreeOfAKind test", () => {
     })
 })
 
-describe("isTwoPair test", () => {
+describe("isStraight", () => {
+    test("Test 1", () => {
+        const ranks = ['1', '2', '3', '4', '5']
+        expect(isStraight(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['9', 't', 'd', 'c', 'k']
+        expect(isStraight(ranks)).toBe(true);
+    })
+    test("Test 3", () => {
+        const ranks = ['1', '2', '3', '4', '10']
+        expect(isStraight(ranks)).toBe(false);
+    })
+})
+
+describe("isTwoPair", () => {
     test("Test 1", () => {
         const ranks = ['9', '4', '8', '8', '9']
         const numRanks = convertToNumbers(ranks)
@@ -63,7 +93,7 @@ describe("isTwoPair test", () => {
     })
 })
 
-describe("isOnePair test", () => {
+describe("isOnePair", () => {
     test("Test 1", () => {
         const ranks = ['1', '3', '4', 'k', '10']
         expect(isOnePair(ranks)).toBe(false);
@@ -77,8 +107,6 @@ describe("isOnePair test", () => {
         expect(isOnePair(ranks)).toBe(true);
     })
 })
-
-
 
 
 
