@@ -1,4 +1,3 @@
-export { }
 
 
 const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "c", "d", "k", "e"]
@@ -29,7 +28,7 @@ export const isStraight = (ranks: string[]) => {
   return straight
 }
 
-const isThreeOfAKind = (ranks: string[]) => {
+export const isThreeOfAKind = (ranks: string[]) => {
   let array = getNum(ranks)
   array = array.sort((a, b) => a - b)
   const threeFirst = array[0] === array[1] && array[1] === array[2]
@@ -38,8 +37,7 @@ const isThreeOfAKind = (ranks: string[]) => {
   return threeFirst || threeMiddle || threeLast
 }
 
-const isTwoPair = (ranks: any[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
-  console.log(ranks)
+export const isTwoPair = (ranks: any[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
   ranks = getNum(ranks)
   let sortedRanks = ranks.sort((a, b) => a - b)
   const firsttwo = sortedRanks[0] === sortedRanks[1]

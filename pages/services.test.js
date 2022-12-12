@@ -1,75 +1,70 @@
-//importing my file to be tested
-const func = require("./services");
+import { isFlush, isOnePair, isTwoPair, isThreeOfAKind, isFourOfAKind } from "./services";
 
 
 describe("IsFlush test", () => {
     test("Test 1", () => {
         const suits = ['s', 's', 's', 's', 'x']
-        expect(func.isFlush(suits)).toBe(false);
+        expect(isFlush(suits)).toBe(false);
     })
     test("Test 2", () => {
         const suits = ['d', 'd', 'd', 'd', 'x']
-        expect(func.isFlush(suits)).toBe(false);
+        expect(isFlush(suits)).toBe(false);
     })
     test("Test 3", () => {
         const suits = ['c', 'c', 'c', 'c', 'c']
-        expect(func.isFlush(suits)).toBe(true);
+        expect(isFlush(suits)).toBe(true);
     })
 })
 
 describe("isOnePair test", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '4', 'K', '10']
-        expect(func.isOnePair(ranks)).toBe(false);
+        const ranks = ['1', '3', '4', 'k', '10']
+        expect(isOnePair(ranks)).toBe(false);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', '4', 'K', 'K']
-        expect(func.isOnePair(ranks)).toBe(true);
+        const ranks = ['1', '3', 'k', '7', 'k']
+        expect(isOnePair(ranks)).toBe(true);
+    })
+})
+
+describe("isTwoPair test", () => {
+    test("Test 1", () => {
+        const ranks = ['9', '4', '8', '8', '9']
+        expect(isTwoPair(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['3', 'k', '3', '4', '4']
+        expect(isTwoPair(ranks)).toBe(true);
+    })
+    test("Test 3", () => {
+        const ranks = ['1', '3', '3', 'k', '1']
+        expect(isTwoPair(ranks)).toBe(true);
     })
 })
 
 
+describe("isThreeOfAKind test", () => {
+    test("Test 1", () => {
+        const ranks = ['1', '3', '1', '1', '10']
+        expect(isThreeOfAKind(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['1', '3', 'k', '5', 'k']
+        expect(isThreeOfAKind(ranks)).toBe(false);
+    })
+})
 
-
-
-
-
-
-
-// //testing the multiply function using toBe matcher
-// test("multiplies 12 and 13 to give 156", () => {
-//   expect(func.multiply(12, 13)).toBe(156);
-// });
-
-// //using the toBeLessThanOrEqual matcher
-// test("Should be under 25", () => {
-//   const weight = 70;
-//   const height = 180 / 100;
-//   const bmi = weight / (height * height);
-//   expect(bmi).toBeLessThanOrEqual(25);
-// });
-
-// //using the toBeCloseTo matcher for floats
-// test("Floating point numbers", () => {
-//   const value = 1.3 + 2.9;
-//   expect(value).toBeCloseTo(4.2);
-// });
-
-// //using the toMatch matcher for regex
-// test("Secret Ingredient", () => {
-//   expect("There is no secret ingredient").toMatch(/secret/);
-// });
-
-// //using the toEqual matcher for Object type
-// test("Luke Skywalker", () => {
-//   expect(func.createUser()).toEqual({
-//     firstName: "Luke",
-//     lastName: "Skywalker",
-//   });
-// });
-
-// //using the toContain matcher for specific element in array
-// test("Master Oogway", () => {
-//   const hisWords = ["There", "are", "no", "accidents"];
-//   expect(hisWords).toContain("accidents");
-// });
+describe("isFourOfAKind test", () => {
+    test("Test 1", () => {
+        const ranks = ['1', '1', '1', '10', '1']
+        expect(isFourOfAKind(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['1', '3', 'k', '5', 'k']
+        expect(isFourOfAKind(ranks)).toBe(false);
+    })
+    test("Test 2", () => {
+        const ranks = ['8', '8', '8', '5', '8']
+        expect(isFourOfAKind(ranks)).toBe(true);
+    })
+})
