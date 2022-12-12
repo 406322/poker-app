@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../functions"
 import Image from 'next/image'
 
-// const getCards = () => { return getAnalysedPokerHand()}
-  
 export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
@@ -18,14 +16,6 @@ export const PokerHand = () => {
         setHandType(rank)
     }
 
-    // Hydration fix - fikse en litt nicere løsning på denne
-    const [rendered, setRendered] = useState(false);
-    useEffect(() => {
-        setRendered(true);
-    }, [])
-    if (!rendered) return null
-
-
     return (
         <>
             {hand &&
@@ -33,22 +23,21 @@ export const PokerHand = () => {
                     <h1 className="m-10 text-3xl font-bold text-center" >Finn pokerhånden</h1>
                     <div
                         className="flex items-center justify-center gap-5">
-                        {/* Kjøre denne i en .map: */}
-                        <div className="relative w-24 h-36"><Image src={`/${hand[0]}.png`} alt={hand[0]} fill sizes="33vw" priority /></div>
-                        <div className="relative w-24 h-36"><Image src={`/${hand[1]}.png`} alt={hand[1]} fill sizes="33vw" priority /></div>
-                        <div className="relative w-24 h-36"><Image src={`/${hand[2]}.png`} alt={hand[2]} fill sizes="33vw" priority /></div>
-                        <div className="relative w-24 h-36"><Image src={`/${hand[3]}.png`} alt={hand[3]} fill sizes="33vw" priority /></div>
-                        <div className="relative w-24 h-36"><Image src={`/${hand[4]}.png`} alt={hand[4]} fill sizes="33vw" priority /></div>
+
+                        {hand.map((card, index) => {
+                            return (
+                                <div className="relative w-24 h-36" key={index}><Image src={`/${card}.png`} alt={card} fill sizes="33vw" priority suppressHydrationWarning /></div>
+                            )
+                        })}
                     </div>
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
-                            {/* <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p> */}
                             <p className="font-bold text-center">{rank}</p>
                             <button
                                 className="p-2 bg-gray-400 rounded-sm"
                                 onClick={() => setCardsToState()}
                                 autoFocus
-                                >
+                            >
                                 Deal New Cards
                             </button>
                         </div>
