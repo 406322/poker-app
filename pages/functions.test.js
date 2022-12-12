@@ -4,37 +4,37 @@ import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoP
 
 describe("isFourOfAKind", () => {
     test("Test 1", () => {
-        const ranks = ['1', '1', '1', 't', '1']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFourOfAKind(numRanks)).toBe(true);
+        const values = ['1', '1', '1', 't', '1']
+        const numValues = convertToNumbers(values)
+        expect(isFourOfAKind(numValues)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '5', 'k']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFourOfAKind(numRanks)).toBe(false);
+        const values = ['1', '3', 'k', '5', 'k']
+        const numValues = convertToNumbers(values)
+        expect(isFourOfAKind(numValues)).toBe(false);
     })
     test("Test 2", () => {
-        const ranks = ['8', '8', '8', '5', '8']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFourOfAKind(numRanks)).toBe(true);
+        const values = ['8', '8', '8', '5', '8']
+        const numValues = convertToNumbers(values)
+        expect(isFourOfAKind(numValues)).toBe(true);
     })
 })
 
 describe("isFullHouse", () => {
     test("Test 1", () => {
-        const ranks = ['1', '1', '1', 't', 't']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFullHouse(numRanks)).toBe(true);
+        const values = ['1', '1', '1', 't', 't']
+        const numValues = convertToNumbers(values)
+        expect(isFullHouse(numValues)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['k', '5', 'k', '5', 'k']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFullHouse(numRanks)).toBe(true);
+        const values = ['k', '5', 'k', '5', 'k']
+        const numValues = convertToNumbers(values)
+        expect(isFullHouse(numValues)).toBe(true);
     })
     test("Test 3", () => {
-        const ranks = ['8', '8', '9', '5', '5']
-        const numRanks = convertToNumbers(ranks)
-        expect(isFullHouse(numRanks)).toBe(false);
+        const values = ['8', '8', '9', '5', '5']
+        const numValues = convertToNumbers(values)
+        expect(isFullHouse(numValues)).toBe(false);
     })  
 })
 
@@ -55,70 +55,70 @@ describe("IsFlush", () => {
 
 describe("isThreeOfAKind", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '1', '1', 't']
-        const numRanks = convertToNumbers(ranks)
-        expect(isThreeOfAKind(numRanks)).toBe(true);
+        const values = ['1', '3', '1', '1', 't']
+        const numValues = convertToNumbers(values)
+        expect(isThreeOfAKind(numValues)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '5', 'k']
-        const numRanks = convertToNumbers(ranks)
-        expect(isThreeOfAKind(numRanks)).toBe(false);
+        const values = ['1', '3', 'k', '5', 'k']
+        const numValues = convertToNumbers(values)
+        expect(isThreeOfAKind(numValues)).toBe(false);
     })
     test("Test 3", () => {
-        const ranks = ['1', 'k', 'k', '5', 'k']
-        const numRanks = convertToNumbers(ranks)
-        expect(isThreeOfAKind(numRanks)).toBe(true);
+        const values = ['1', 'k', 'k', '5', 'k']
+        const numValues = convertToNumbers(values)
+        expect(isThreeOfAKind(numValues)).toBe(true);
     })
 })
 
 describe("isStraight", () => {
     test("Test 1", () => {
-        const ranks = ['1', '2', '3', '4', '5']
-        const numRanks = convertToNumbers(ranks)
-        expect(isStraight(numRanks)).toBe(true);
+        const values = ['1', '2', '3', '4', '5']
+        const numValues = convertToNumbers(values)
+        expect(isStraight(numValues)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['9', 't', 'd', 'c', 'k']
-        const numRanks = convertToNumbers(ranks)
-        expect(isStraight(numRanks)).toBe(true);
+        const values = ['9', 't', 'd', 'c', 'k']
+        const numValues = convertToNumbers(values)
+        expect(isStraight(numValues)).toBe(true);
     })
     test("Test 3", () => {
-        const ranks = ['1', '2', '3', '4', 't']
-        const numRanks = convertToNumbers(ranks)
-        expect(isStraight(numRanks)).toBe(false);
+        const values = ['1', '2', '3', '4', 't']
+        const numValues = convertToNumbers(values)
+        expect(isStraight(numValues)).toBe(false);
     })
 })
 
 describe("isTwoPair", () => {
     test("Test 1", () => {
-        const ranks = ['9', '4', '8', '8', '9']
-        const numRanks = convertToNumbers(ranks)
-        expect(isTwoPair(numRanks)).toBe(true);
+        const values = ['9', '4', '8', '8', '9']
+        const numValues = convertToNumbers(values)
+        expect(isTwoPair(numValues)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['3', 'k', '3', '4', '4']
-        const numRanks = convertToNumbers(ranks)
-        expect(isTwoPair(numRanks)).toBe(true);
+        const values = ['3', 'k', '3', '4', '4']
+        const numValues = convertToNumbers(values)
+        expect(isTwoPair(numValues)).toBe(true);
     })
     test("Test 3", () => {
-        const ranks = ['1', '3', '3', 'k', '1']
-        const numRanks = convertToNumbers(ranks)
-        expect(isTwoPair(numRanks)).toBe(true);
+        const values = ['1', '3', '3', 'k', '1']
+        const numValues = convertToNumbers(values)
+        expect(isTwoPair(numValues)).toBe(true);
     })
 })
 
 describe("isOnePair", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '4', 'k', 't']
-        expect(isOnePair(ranks)).toBe(false);
+        const values = ['1', '3', '4', 'k', 't']
+        expect(isOnePair(values)).toBe(false);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '7', 'k']
-        expect(isOnePair(ranks)).toBe(true);
+        const values = ['1', '3', 'k', '7', 'k']
+        expect(isOnePair(values)).toBe(true);
     })
     test("Test 3", () => {
-        const ranks = ['1', '3', '1', '7', 'k']
-        expect(isOnePair(ranks)).toBe(true);
+        const values = ['1', '3', '1', '7', 'k']
+        expect(isOnePair(values)).toBe(true);
     })
 })
 

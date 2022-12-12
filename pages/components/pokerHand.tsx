@@ -7,15 +7,15 @@ import Image from 'next/image'
 export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
-    const [handType, setHandType] = useState<string | null>(null)
+    const [rank, setHandType] = useState<string | null>(null)
     useEffect(() => {
         setCardsToState()
     }, []);
 
     const setCardsToState = () => {
-        const { hand, handType } = getAnalysedPokerHand()
+        const { hand, rank } = getAnalysedPokerHand()
         setHand(hand)
-        setHandType(handType)
+        setHandType(rank)
     }
 
     // Hydration fix - fikse en litt nicere løsning på denne
@@ -43,7 +43,7 @@ export const PokerHand = () => {
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col gap-5">
                             {/* <p>{hand[0]} - {hand[1]} - {hand[2]} - {hand[3]} - {hand[4]}</p> */}
-                            <p className="font-bold text-center">{handType}</p>
+                            <p className="font-bold text-center">{rank}</p>
                             <button
                                 className="p-2 bg-gray-400 rounded-sm"
                                 onClick={() => setCardsToState()}
