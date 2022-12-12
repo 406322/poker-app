@@ -103,7 +103,7 @@ const getPokerHandType = (hand: string[]) => {
   const ranks = hand.map(card => card[0])
   const numRanks = convertToNumbers(ranks)
 
-  if (isFlush(suits) && isStraight(numRanks)) return "Straight Flush" // can pass in array of numbers here
+  if (isFlush(suits) && isStraight(numRanks)) return "Straight Flush"
   if (isFourOfAKind(numRanks)) return "Four of a Kind"
   if (isFullHouse(numRanks)) return "Full House"
   if (isFlush(suits)) return "Flush"
