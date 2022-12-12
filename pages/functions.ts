@@ -6,28 +6,25 @@
 const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "c", "d", "k", "e"]
 const kortfarge = ["k", "r", "h", "s"]
 
-export const isFourOfAKind = (ranks: string[]) => {
-  const numArray = convertToNumbers(ranks) // Få alle disse inn i getPokerHandType funksjonen?
-  .sort((a, b) => a - b)
-  const fourFirst = numArray[0] === numArray[1] && numArray[1] === numArray[2] && numArray[2] === numArray[3]
-  const fourLast = numArray[1] === numArray[2] && numArray[2] === numArray[3] && numArray[3] === numArray[4]
+export const isFourOfAKind = (ranks: number[]) => {
+  ranks.sort((a, b) => a - b)
+  const fourFirst = ranks[0] === ranks[1] && ranks[1] === ranks[2] && ranks[2] === ranks[3]
+  const fourLast = ranks[1] === ranks[2] && ranks[2] === ranks[3] && ranks[3] === ranks[4]
   return fourFirst || fourLast
 }
 
-export const isFullHouse = (ranks: string[]) => {
-  const numArray = convertToNumbers(ranks) // Få alle disse inn i getPokerHandType funksjonen?
-  .sort((a, b) => a - b)
-  const fullHouseLowPair = numArray[0] === numArray[1] && numArray[2] === numArray[3] && numArray[3] === numArray[4]
-  const fullHouseHighPair = numArray[0] === numArray[1] && numArray[1] === numArray[2] && numArray[3] === numArray[4]
+export const isFullHouse = (ranks: number[]) => {
+  ranks.sort((a, b) => a - b)
+  const fullHouseLowPair = ranks[0] === ranks[1] && ranks[2] === ranks[3] && ranks[3] === ranks[4]
+  const fullHouseHighPair = ranks[0] === ranks[1] && ranks[1] === ranks[2] && ranks[3] === ranks[4]
   return fullHouseLowPair || fullHouseHighPair
 }
 
 export const isFlush = (suits: string[]) => suits.every(suit => suit === suits[0])
 
-export const isStraight = (ranks: string[]) => {
-  const numArray = convertToNumbers(ranks)
-  .sort((a, b) => a - b)
-  const straight = (numArray[4] - 1) == numArray[3] && (numArray[3] - 1) == numArray[2] && (numArray[2] - 1) == numArray[1] && (numArray[1] - 1) == numArray[0]
+export const isStraight = (ranks: number[]) => {
+  ranks.sort((a, b) => a - b)
+  const straight = (ranks[4] - 1) == ranks[3] && (ranks[3] - 1) == ranks[2] && (ranks[2] - 1) == ranks[1] && (ranks[1] - 1) == ranks[0]
   return straight
 }
 
@@ -104,14 +101,13 @@ const getPokerHandType = (hand: string[]) => {
 
   const suits = hand.map(card => card[1])
   const ranks = hand.map(card => card[0])
-
   const numRanks = convertToNumbers(ranks)
 
-  if (isFlush(suits) && isStraight(ranks)) return "Straight Flush" // can pass in array of numbers here
-  if (isFourOfAKind(ranks)) return "Four of a Kind"
-  if (isFullHouse(ranks)) return "Full House"
+  if (isFlush(suits) && isStraight(numRanks)) return "Straight Flush" // can pass in array of numbers here
+  if (isFourOfAKind(numRanks)) return "Four of a Kind"
+  if (isFullHouse(numRanks)) return "Full House"
   if (isFlush(suits)) return "Flush"
-  if (isStraight(ranks)) return "Straight"
+  if (isStraight(numRanks)) return "Straight"
   if (isThreeOfAKind(numRanks)) return "Three of a Kind"
   if (isTwoPair(numRanks)) return "Two Pair"
   if (isOnePair(numRanks)) return "One Pair"

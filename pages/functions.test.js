@@ -4,31 +4,37 @@ import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoP
 
 describe("isFourOfAKind", () => {
     test("Test 1", () => {
-        const ranks = ['1', '1', '1', '10', '1']
-        expect(isFourOfAKind(ranks)).toBe(true);
+        const ranks = ['1', '1', '1', 't', '1']
+        const numRanks = convertToNumbers(ranks)
+        expect(isFourOfAKind(numRanks)).toBe(true);
     })
     test("Test 2", () => {
         const ranks = ['1', '3', 'k', '5', 'k']
-        expect(isFourOfAKind(ranks)).toBe(false);
+        const numRanks = convertToNumbers(ranks)
+        expect(isFourOfAKind(numRanks)).toBe(false);
     })
     test("Test 2", () => {
         const ranks = ['8', '8', '8', '5', '8']
-        expect(isFourOfAKind(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isFourOfAKind(numRanks)).toBe(true);
     })
 })
 
 describe("isFullHouse", () => {
     test("Test 1", () => {
-        const ranks = ['1', '1', '1', '10', '10']
-        expect(isFullHouse(ranks)).toBe(true);
+        const ranks = ['1', '1', '1', 't', 't']
+        const numRanks = convertToNumbers(ranks)
+        expect(isFullHouse(numRanks)).toBe(true);
     })
     test("Test 2", () => {
         const ranks = ['k', '5', 'k', '5', 'k']
-        expect(isFullHouse(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isFullHouse(numRanks)).toBe(true);
     })
     test("Test 3", () => {
         const ranks = ['8', '8', '9', '5', '5']
-        expect(isFullHouse(ranks)).toBe(false);
+        const numRanks = convertToNumbers(ranks)
+        expect(isFullHouse(numRanks)).toBe(false);
     })  
 })
 
@@ -49,7 +55,7 @@ describe("IsFlush", () => {
 
 describe("isThreeOfAKind", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '1', '1', '10']
+        const ranks = ['1', '3', '1', '1', 't']
         const numRanks = convertToNumbers(ranks)
         expect(isThreeOfAKind(numRanks)).toBe(true);
     })
@@ -58,20 +64,28 @@ describe("isThreeOfAKind", () => {
         const numRanks = convertToNumbers(ranks)
         expect(isThreeOfAKind(numRanks)).toBe(false);
     })
+    test("Test 3", () => {
+        const ranks = ['1', 'k', 'k', '5', 'k']
+        const numRanks = convertToNumbers(ranks)
+        expect(isThreeOfAKind(numRanks)).toBe(true);
+    })
 })
 
 describe("isStraight", () => {
     test("Test 1", () => {
         const ranks = ['1', '2', '3', '4', '5']
-        expect(isStraight(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isStraight(numRanks)).toBe(true);
     })
     test("Test 2", () => {
         const ranks = ['9', 't', 'd', 'c', 'k']
-        expect(isStraight(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isStraight(numRanks)).toBe(true);
     })
     test("Test 3", () => {
-        const ranks = ['1', '2', '3', '4', '10']
-        expect(isStraight(ranks)).toBe(false);
+        const ranks = ['1', '2', '3', '4', 't']
+        const numRanks = convertToNumbers(ranks)
+        expect(isStraight(numRanks)).toBe(false);
     })
 })
 
@@ -95,7 +109,7 @@ describe("isTwoPair", () => {
 
 describe("isOnePair", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '4', 'k', '10']
+        const ranks = ['1', '3', '4', 'k', 't']
         expect(isOnePair(ranks)).toBe(false);
     })
     test("Test 2", () => {
