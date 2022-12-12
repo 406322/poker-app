@@ -1,4 +1,4 @@
-import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoPair, isOnePair } from "./functions";
+import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoPair, isOnePair, convertToNumbers } from "./functions";
 
 
 
@@ -35,26 +35,31 @@ describe("IsFlush test", () => {
 describe("isThreeOfAKind test", () => {
     test("Test 1", () => {
         const ranks = ['1', '3', '1', '1', '10']
-        expect(isThreeOfAKind(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isThreeOfAKind(numRanks)).toBe(true);
     })
     test("Test 2", () => {
         const ranks = ['1', '3', 'k', '5', 'k']
-        expect(isThreeOfAKind(ranks)).toBe(false);
+        const numRanks = convertToNumbers(ranks)
+        expect(isThreeOfAKind(numRanks)).toBe(false);
     })
 })
 
 describe("isTwoPair test", () => {
     test("Test 1", () => {
         const ranks = ['9', '4', '8', '8', '9']
-        expect(isTwoPair(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isTwoPair(numRanks)).toBe(true);
     })
     test("Test 2", () => {
         const ranks = ['3', 'k', '3', '4', '4']
-        expect(isTwoPair(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isTwoPair(numRanks)).toBe(true);
     })
     test("Test 3", () => {
         const ranks = ['1', '3', '3', 'k', '1']
-        expect(isTwoPair(ranks)).toBe(true);
+        const numRanks = convertToNumbers(ranks)
+        expect(isTwoPair(numRanks)).toBe(true);
     })
 })
 
