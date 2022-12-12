@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { getAnalysedPokerHand } from "../functions"
 import Image from 'next/image'
 
-const getCards = () => { return getAnalysedPokerHand()}
+// const getCards = () => { return getAnalysedPokerHand()}
   
 export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
     const [handType, setHandType] = useState<string | null>(null)
-
     useEffect(() => {
         setCardsToState()
     }, []);
@@ -19,7 +18,7 @@ export const PokerHand = () => {
         setHandType(handType)
     }
 
-    // Hydration fix
+    // Hydration fix - fikse en litt nicere løsning på denne
     const [rendered, setRendered] = useState(false);
     useEffect(() => {
         setRendered(true);
@@ -34,6 +33,7 @@ export const PokerHand = () => {
                     <h1 className="m-10 text-3xl font-bold text-center" >Finn pokerhånden</h1>
                     <div
                         className="flex items-center justify-center gap-5">
+                        {/* Kjøre denne i en .map: */}
                         <div className="relative w-24 h-36"><Image src={`/${hand[0]}.png`} alt={hand[0]} fill sizes="33vw" priority /></div>
                         <div className="relative w-24 h-36"><Image src={`/${hand[1]}.png`} alt={hand[1]} fill sizes="33vw" priority /></div>
                         <div className="relative w-24 h-36"><Image src={`/${hand[2]}.png`} alt={hand[2]} fill sizes="33vw" priority /></div>

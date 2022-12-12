@@ -3,11 +3,11 @@
 const tallverdi = ["2", "3", "4", "5", "6", "7", "8", "9", "t", "c", "d", "k", "e"]
 const kortfarge = ["k", "r", "h", "s"]
 
-export const isFourOfAKind = (ranks: any[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
-  ranks = convertToNumbers(ranks)
+export const isFourOfAKind = (ranks: string[]) => { // Her måtte konvertert ranks til numbers helt i starten, endre på mye greier...
+  const num = convertToNumbers(ranks) // 
     .sort((a, b) => a - b)
-  const fourFirst = ranks[0] === ranks[1] && ranks[1] === ranks[2] && ranks[2] === ranks[3]
-  const fourLast = ranks[1] === ranks[2] && ranks[2] === ranks[3] && ranks[3] === ranks[4]
+  const fourFirst = num[0] === num[1] && num[1] === num[2] && num[2] === num[3]
+  const fourLast = num[1] === num[2] && num[2] === num[3] && num[3] === num[4]
   return fourFirst || fourLast
 }
 
@@ -22,7 +22,7 @@ export const isFullHouse = (ranks: string[]) => {
 export const isFlush = (suits: string[]) => suits.every(suit => suit === suits[0])
 
 export const isStraight = (ranks: string[]) => {
-  let num = convertToNumbers(ranks)
+  const num = convertToNumbers(ranks)
   num.sort((a, b) => a - b)
   const straight = (num[4] - 1) == num[3] && (num[3] - 1) == num[2] && (num[2] - 1) == num[1] && (num[1] - 1) == num[0]
   return straight
@@ -49,7 +49,17 @@ export const isTwoPair = (ranks: any[]) => { // Her måtte konvertert ranks til 
 
 export const isOnePair = (ranks: string[]) => [...new Set(ranks)].length === 4
 
-
+// Helper that converts the ranks to numbers
+const convertToNumbers = (ranks: string[]) => {
+  return ranks.map((element) => {
+    if (element === 't') return 10
+    if (element === 'c') return 11
+    if (element === 'd') return 12
+    if (element === 'k') return 13
+    if (element === 'e') return 14
+    else return Number(element)
+  })
+}
 
 export const generatePokerHand = () => {
   const hånd = Array(5)
@@ -64,26 +74,12 @@ export const generatePokerHand = () => {
 
 
 
-// Helper that converts the ranks to numbers
-const convertToNumbers = (ranks: string[]) => {
-  return ranks.map((element) => {
-    if (element === 't') return 10
-    if (element === 'c') return 11
-    if (element === 'd') return 12
-    if (element === 'k') return 13
-    if (element === 'e') return 14
-    else return Number(element)
-  })
-}
-
-
-
 // Funksjon som returnerer analyse av hånden
 const getPokerHandType = (hand: string[]) => {
   const suits = hand.map(card => card[1])
   const ranks = hand.map(card => card[0])
 
-  if (isFlush(suits) && isStraight(ranks)) return "Straight Flush"
+  if (isFlush(suits) && isStraight(ranks)) return "Straight Flush" // can pass in array of numbers here
   if (isFourOfAKind(ranks)) return "Four of a Kind"
   if (isFullHouse(ranks)) return "Full House"
   if (isFlush(suits)) return "Flush"

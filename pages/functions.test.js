@@ -1,5 +1,21 @@
-import { isFlush, isOnePair, isTwoPair, isThreeOfAKind, isFourOfAKind } from "./functions";
+import { isFourOfAKind, isFullHouse, isFlush, isStraight, isThreeOfAKind, isTwoPair, isOnePair } from "./functions";
 
+
+
+describe("isFourOfAKind test", () => {
+    test("Test 1", () => {
+        const ranks = ['1', '1', '1', '10', '1']
+        expect(isFourOfAKind(ranks)).toBe(true);
+    })
+    test("Test 2", () => {
+        const ranks = ['1', '3', 'k', '5', 'k']
+        expect(isFourOfAKind(ranks)).toBe(false);
+    })
+    test("Test 2", () => {
+        const ranks = ['8', '8', '8', '5', '8']
+        expect(isFourOfAKind(ranks)).toBe(true);
+    })
+})
 
 describe("IsFlush test", () => {
     test("Test 1", () => {
@@ -16,14 +32,14 @@ describe("IsFlush test", () => {
     })
 })
 
-describe("isOnePair test", () => {
+describe("isThreeOfAKind test", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '4', 'k', '10']
-        expect(isOnePair(ranks)).toBe(false);
+        const ranks = ['1', '3', '1', '1', '10']
+        expect(isThreeOfAKind(ranks)).toBe(true);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '7', 'k']
-        expect(isOnePair(ranks)).toBe(true);
+        const ranks = ['1', '3', 'k', '5', 'k']
+        expect(isThreeOfAKind(ranks)).toBe(false);
     })
 })
 
@@ -42,29 +58,23 @@ describe("isTwoPair test", () => {
     })
 })
 
-
-describe("isThreeOfAKind test", () => {
+describe("isOnePair test", () => {
     test("Test 1", () => {
-        const ranks = ['1', '3', '1', '1', '10']
-        expect(isThreeOfAKind(ranks)).toBe(true);
+        const ranks = ['1', '3', '4', 'k', '10']
+        expect(isOnePair(ranks)).toBe(false);
     })
     test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '5', 'k']
-        expect(isThreeOfAKind(ranks)).toBe(false);
+        const ranks = ['1', '3', 'k', '7', 'k']
+        expect(isOnePair(ranks)).toBe(true);
+    })
+    test("Test 3", () => {
+        const ranks = ['1', '3', '1', '7', 'k']
+        expect(isOnePair(ranks)).toBe(true);
     })
 })
 
-describe("isFourOfAKind test", () => {
-    test("Test 1", () => {
-        const ranks = ['1', '1', '1', '10', '1']
-        expect(isFourOfAKind(ranks)).toBe(true);
-    })
-    test("Test 2", () => {
-        const ranks = ['1', '3', 'k', '5', 'k']
-        expect(isFourOfAKind(ranks)).toBe(false);
-    })
-    test("Test 2", () => {
-        const ranks = ['8', '8', '8', '5', '8']
-        expect(isFourOfAKind(ranks)).toBe(true);
-    })
-})
+
+
+
+
+
