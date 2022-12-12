@@ -6,6 +6,7 @@ export const PokerHand = () => {
 
     const [hand, setHand] = useState<string[] | null>(null);
     const [rank, setHandType] = useState<string | null>(null)
+    
     useEffect(() => {
         setCardsToState()
     }, []);
