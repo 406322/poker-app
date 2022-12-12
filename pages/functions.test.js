@@ -1,4 +1,4 @@
-import { isFlush, isOnePair, isTwoPair, isThreeOfAKind, isFourOfAKind } from "./services";
+import { isFlush, isOnePair, isTwoPair, isThreeOfAKind, isFourOfAKind } from "./functions";
 
 
 describe("IsFlush test", () => {

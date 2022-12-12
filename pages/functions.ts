@@ -62,6 +62,8 @@ export const generatePokerHand = () => {
   return hånd;
 }
 
+
+
 // Helper that converts the ranks to numbers
 const getNum = (ranks: string[]) => {
   return ranks.map((element) => {
@@ -75,11 +77,11 @@ const getNum = (ranks: string[]) => {
 }
 
 
+
 // Funksjon som returnerer analyse av hånden
 const getPokerHandType = (hand: string[]) => {
   const suits = hand.map(card => card[1])
   const ranks = hand.map(card => card[0])
-
 
   if (isFlush(suits) && isStraight(ranks)) return "Straight Flush"
   if (isFourOfAKind(ranks)) return "Four of a Kind"

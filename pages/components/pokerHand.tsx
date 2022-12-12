@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAnalysedPokerHand } from "../services"
+import { getAnalysedPokerHand } from "../functions"
 import Image from 'next/image'
 
 const getCards = () => { return getAnalysedPokerHand()}
@@ -56,6 +56,5 @@ export const PokerHand = () => {
                 </>
             }
         </>
-
     )
 }
